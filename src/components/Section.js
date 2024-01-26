@@ -1,30 +1,34 @@
 import React from 'react'
+import { Fade } from 'react-reveal'
 import styled from 'styled-components'
 
 const Section = ({ title, description, leftBtnText, rightBtnText, backgroundImg }) => {
 
     return (
         <Wrap bgImg={backgroundImg}>
-
-            <ItemText>
-                <h1>{title}</h1>
-                <p>{description}</p>
-            </ItemText>
+            <Fade bottom>
+                <ItemText>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
+                </ItemText>
+            </Fade>
 
             <Buttons>
-                <ButtonGroup>
-                    <LeftButton>
-                        {leftBtnText}
-                    </LeftButton>
+                <Fade bottom>
+                    <ButtonGroup>
+                        <LeftButton>
+                            {leftBtnText}
+                        </LeftButton>
 
-                    {rightBtnText &&
-                        <RightButton>
-                            {rightBtnText}
-                        </RightButton>
-                    }
+                        {rightBtnText &&
+                            <RightButton>
+                                {rightBtnText}
+                            </RightButton>
+                        }
 
-                </ButtonGroup>
-                <DownArrow src="/images/down-arrow.svg" />
+                    </ButtonGroup>
+                    <DownArrow src="/images/down-arrow.svg" />
+                </Fade>
             </Buttons>
 
 
@@ -37,6 +41,7 @@ const Section = ({ title, description, leftBtnText, rightBtnText, backgroundImg 
 export default Section
 
 const Wrap = styled.div`
+    z-index: 10;
     width:100vw;
     height:100vh;
     display: flex;
@@ -53,6 +58,7 @@ const Wrap = styled.div`
 const ItemText = styled.div`
 padding-top: 15vh;
 text-align: center;
+z-index: -1;
 
 `
 
@@ -66,7 +72,7 @@ margin-bottom: 30px;
 `
 
 const LeftButton = styled.div`
-background-color: rgba(23, 26, 32, 0.8);
+background-color: rgba(23, 26, 32, 0.9);
 height: 40px;
 width: 256px;
 color: white;
@@ -85,7 +91,7 @@ margin: 8px;
 
 const RightButton = styled(LeftButton)`
 background-color: white;
-opacity: 0.65;
+opacity: 0.8;
 color: black;
 
 `
