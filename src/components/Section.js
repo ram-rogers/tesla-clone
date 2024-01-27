@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const Section = ({ title, description, leftBtnText, rightBtnText, backgroundImg }) => {
 
     return (
-        <Wrap bgImg={backgroundImg}>
+        <Wrap bgImg={backgroundImg} id={title}>
             <Fade bottom>
                 <ItemText>
                     <h1>{title}</h1>
@@ -64,7 +64,7 @@ z-index: -1;
 
 const ButtonGroup = styled.div`
 display: flex;
-margin-bottom: 30px;
+margin-bottom: 5px;
 @media(max - width: 768px) {
     flex-direction: column;
 }
@@ -106,4 +106,4 @@ animation: animateDown infinite 1.5s;
 
 const Buttons = styled.div`
 
-    `
+`

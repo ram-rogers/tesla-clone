@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { Fade } from 'react-reveal';
+import { selectCars } from "../features/car/carSlice"
+import { useSelector } from 'react-redux';
 
 const Header = () => {
 
     const [toggleMenu, setToggleMenu] = useState(false)
+    const cars = useSelector(selectCars)
+
+
 
     const handleMenuToggle = () => {
         setToggleMenu(!toggleMenu)
@@ -21,10 +25,13 @@ const Header = () => {
                 <img src="/images/logo.svg" alt="Logo" />
             </a>
             <Menu>
-                <a href="#">Modal S</a>
-                <a href="#">Modal Y</a>
-                <a href="#">Modal X</a>
-                <a href="#">Modal 3</a>
+                {
+                    cars && cars.map((car, index) => (
+
+                        <a key={index} href={`#${car}`}>{car}</a>
+                    ))
+                }
+
 
             </Menu>
 
@@ -43,16 +50,19 @@ const Header = () => {
                     <CustomClose onClick={handleMenuToggle} />
 
                 </ClassWrapper>
+                {
+                    cars && cars.map((car, index) => (
 
+                        <li key={index}><a href={`#${car}`}>{car}</a></li>
+
+                    ))
+                }
 
                 <li><a href="#">Existing Inventory</a></li>
                 <li><a href="#">Used Inventory</a></li>
                 <li><a href="#">Trade-in</a></li>
                 <li><a href="#">CyberTruck</a></li>
                 <li><a href="#">Roadaster</a></li>
-                <li><a href="#">Existing Inventory</a></li>
-                <li><a href="#">Existing Inventory</a></li>
-                <li><a href="#">Existing Inventory</a></li>
 
             </BurgerNav>
 
@@ -137,7 +147,7 @@ const BurgerNav = styled.div`
     
     li{
         padding: 15px 0;
-        border-bottom: 1px solid rgba(0,0,0,0.2)
+        border-bottom: 1px solid rgba(0,0,0,0.2);
 
         a{
             font-weight: 600;
